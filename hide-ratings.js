@@ -1,6 +1,6 @@
 // Hide rating and make element visible (loaded as hidden to prevent flashes)
 function hideRating(element) {
-  element.textContent = '??';
+  if (!window.location.pathname.startsWith("/user/")) element.textContent = '??';
   element.style.visibility = 'visible';
   return;
 }
