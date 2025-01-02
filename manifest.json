@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "AOTY Hidden Ratings",
+  "version": "1.0",
+
+  "description": "Hides the average ratings on Album of The Year (AOTY) to minimize bias on the viewer.",
+  "homepage_url": "https://github.com/boladss/aoty-hidden-ratings",
+
+  "icons": {
+    "48": "icons/aoty-logo.png",
+    "96": "icons/aoty-logo.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://www.albumoftheyear.org/*"],
+      "js": ["hide-ratings.js"],
+      "css": ["styles.css"],
+      "run_at": "document_start"
+    }
+  ]
+}
