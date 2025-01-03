@@ -7,8 +7,8 @@
   "homepage_url": "https://github.com/boladss/aoty-hidden-ratings",
 
   "icons": {
-    "48": "icons/aoty-logo.png",
-    "96": "icons/aoty-logo.png"
+    "48": "icons/hidden-rating-48.png",
+    "96": "icons/hidden-rating-96.png"
   },
 
   "content_scripts": [
