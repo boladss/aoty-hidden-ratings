@@ -23,28 +23,25 @@ function showRating(element) {
 
 // Apply preferences for all elements
 function applyPreferences(preferences) {
+
+  // Helper function to toggle hiding/showing ratings
+  function toggleRatings(elements, hide) {
+    elements.forEach(element => {
+      hide ? hideRating(element) : showRating(element);
+    });
+  }
+
   // RELEASE PAGE: Average critic and user ratings
   const criticScore = document.querySelector('.albumCriticScore a');
   const userScore = document.querySelector('.albumUserScore a');
-  
-  if (preferences.hideAverageRatings) {
-    if (criticScore) hideRating(criticScore)
-    if (userScore) hideRating(userScore)
 
-    // RELEASES: Average rating subtitle per release, with catches for individual reviews
-    document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
-      .forEach(element => {hideRating(element)});    
+  // RELEASES PAGE: Average rating subtitles per release, with exceptions for individual reviews
+  const averageRatings = document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
 
-  } else {
-    if (criticScore) showRating(criticScore)
-    if (userScore) showRating(userScore)
-
-    document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
-      .forEach(element => {showRating(element)});
-  }
-
-
-  
+  // Toggle elements
+  toggleRatings([criticScore, userScore].filter(Boolean), preferences.hideAverageRatings);
+  toggleRatings([...averageRatings], preferences.hideAverageRatings);
+    
   // Lists
   // document.querySelectorAll('.scoreValue').forEach(element => {hideRating(element)});
   
