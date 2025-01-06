@@ -5,7 +5,7 @@ function hideRating(element) {
   if (!window.location.pathname.startsWith("/user/")) {
 
     // Store original value when hiding to access later when needed
-    if (!element.dataset.ratingOriginalValue) { 
+    if (!element.dataset.ratingOriginalValue && element.textContent !== "NR") { 
       element.dataset.ratingOriginalValue = element.textContent.trim(); // Store original value
       element.textContent = '??'; // Hide rating
     }
