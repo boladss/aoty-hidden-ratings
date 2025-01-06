@@ -31,20 +31,20 @@ function applyPreferences(preferences) {
     });
   }
 
-  // RELEASE PAGE: Average critic and user ratings
+  // RELEASE PAGE: Average critic and user rating
   const criticScore = document.querySelector('.albumCriticScore a');
   const userScore = document.querySelector('.albumUserScore a');
 
   // RELEASES PAGE: Average rating subtitles per release, with exceptions for individual reviews
-  const averageRatings = document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
+  const averageRatingsReleases = document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
+
+  // LISTS: Average ratings on lists (e.g., "Best of 2024")
+  const averageRatingsLists = document.querySelectorAll('.scoreValue');
 
   // Toggle elements
   toggleRatings([criticScore, userScore].filter(Boolean), preferences.hideAverageRatings);
-  toggleRatings([...averageRatings], preferences.hideAverageRatings);
-    
-  // Lists
-  // document.querySelectorAll('.scoreValue').forEach(element => {hideRating(element)});
-  
+  toggleRatings([...averageRatingsReleases, ...averageRatingsLists], preferences.hideAverageRatings);
+
   // Per-track rating
   // document.querySelectorAll('.trackRating').forEach(element => {hideRating(element)});
 }
