@@ -11,7 +11,7 @@ function hideRating(element) {
       // Check if element is in a trackRatings container (need to save color)
       if (element.closest('.trackRating')) {
         element.dataset.trackOriginalColor = getComputedStyle(element).color;
-        element.style.color = 'black'; // Hide color
+        element.style.color = 'dimgray'; // Hide color
         console.log("COLOR: ", element.style.color);
       }
 
