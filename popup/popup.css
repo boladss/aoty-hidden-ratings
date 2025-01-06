@@ -1,0 +1,16 @@
+html, body {
+  width: 200px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Disabled labels styling */
+label.disabled-label {
+  color: black;
+}
+
+input:disabled + label.disabled-label {
+  color:gray;
+}
