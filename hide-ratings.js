@@ -90,7 +90,9 @@ function applyPreferences(preferences) {
   const perTrackRatings = document.querySelectorAll('.trackRating span');
 
   // ----- RATING BARS -----
-  const ratingBars = document.querySelectorAll('.ratingBar div:not(.yourRatingContainer .ratingBar div):not(.albumReviewRow .ratingBar div)');
+  const ratingBars = document.querySelectorAll(
+    `.ratingBar div:not(.yourRatingContainer .ratingBar div):not(.albumReviewRow .ratingBar div), 
+    .albumReviewRatingBar div:not(#criticReviewContainer .albumReviewRatingBar div)`);
 
   // Toggle elements
   toggleRatings([criticScore, userScore].filter(Boolean), preferences.hideAverageRatings);
