@@ -23,20 +23,27 @@ function showRating(element) {
 
 // Apply preferences for all elements
 function applyPreferences(preferences) {
-  // Average critic and user ratings
+  // RELEASE PAGE: Average critic and user ratings
   const criticScore = document.querySelector('.albumCriticScore a');
   const userScore = document.querySelector('.albumUserScore a');
   
   if (preferences.hideAverageRatings) {
     if (criticScore) hideRating(criticScore)
     if (userScore) hideRating(userScore)
+
+    // RELEASES: Average rating subtitle per release, with catches for individual reviews
+    document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
+      .forEach(element => {hideRating(element)});    
+
   } else {
     if (criticScore) showRating(criticScore)
     if (userScore) showRating(userScore)
+
+    document.querySelectorAll(".rating:not(.yourRatingContainer .rating):not(.albumReviewRow .rating)")
+      .forEach(element => {showRating(element)});
   }
 
-  // Releases page
-  // document.querySelectorAll('.rating').forEach(element => {hideRating(element)});
+
   
   // Lists
   // document.querySelectorAll('.scoreValue').forEach(element => {hideRating(element)});
