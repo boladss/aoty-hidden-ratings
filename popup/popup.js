@@ -20,7 +20,7 @@ saveButton.addEventListener("click", () => {
   // Consolidate individual preferences
   const preferences = {
     hideAverageRatings: toggleAverageRatings.checked,
-    hideRatingBars: toggleRatingBars.checked,
+    hideRatingBars: toggleRatingBars.disabled ? false : toggleRatingBars.checked,
     hidePerTrackRatings: togglePerTrackRatings.checked
   }
 
@@ -35,20 +35,21 @@ saveButton.addEventListener("click", () => {
   });
 })
 
-// Disable the rating bars toggle when average ratings are visible
-function handleToggleRatingBars() {
-  console.log("TOGGLED!");
-  // When average ratings are displayed ...
-  if (!toggleAverageRatings.checked) {
-    toggleRatingBars.disabled = true; // Disable the toggle for rating bars
-    toggleRatingBars.checked = false; // Uncheck it if it's already checked
-  } else {
-    toggleRatingBars.disabled = false; // Enable the toggle again
+document.addEventListener('DOMContentLoaded', function () {
+  // Disable the rating bars toggle when average ratings are visible
+  function handleToggleRatingBars() {
+    if (!toggleAverageRatings.checked) {
+      toggleRatingBars.disabled = true;
+    } else {
+      toggleRatingBars.disabled = false;
+    }
   }
-}
 
-// Event listener for the rating bars toggle
-toggleAverageRatings.addEventListener('change', handleToggleRatingBars);
+  // Event listener for the rating bars toggle
+  toggleAverageRatings.addEventListener('change', handleToggleRatingBars);
 
-// Run on startup
-handleToggleRatingBars();
+  // Run on startup, but with timeout to ensure checkboxes have been rendered
+  setTimeout(() => {
+    handleToggleRatingBars();
+  }, 100);
+})
