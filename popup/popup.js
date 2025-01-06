@@ -1,7 +1,7 @@
 // Popup relevant UI elements
-const averageRatingsToggle = document.getElementById("toggle-average-ratings");
-const ratingBarsToggle  = document.getElementById("toggle-rating-bars");
-const perTrackRatingsToggle = document.getElementById("toggle-per-track-ratings");
+const toggleAverageRatings = document.getElementById("toggle-average-ratings");
+const toggleRatingBars  = document.getElementById("toggle-rating-bars");
+const togglePerTrackRatings = document.getElementById("toggle-per-track-ratings");
 const saveButton = document.getElementById("hidden-ratings-save");
 
 // Access user preferences from local storage
@@ -10,18 +10,18 @@ browser.storage.local.get([
   "hideRatingBars",
   "hidePerTrackRatings"
 ], (result) => {
-  averageRatingsToggle.checked = result.hideAverageRatings ?? true;
-  ratingBarsToggle.checked = result.hideRatingBars ?? false;
-  perTrackRatingsToggle.checked = result.hidePerTrackRatings ?? false;
+  toggleAverageRatings.checked = result.hideAverageRatings ?? true;
+  toggleRatingBars.checked = result.hideRatingBars ?? false;
+  togglePerTrackRatings.checked = result.hidePerTrackRatings ?? false;
 });
 
 // Update preferences
 saveButton.addEventListener("click", () => {
   // Consolidate individual preferences
   const preferences = {
-    hideAverageRatings: averageRatingsToggle.checked,
-    hideRatingBars: ratingBarsToggle.checked,
-    hidePerTrackRatings: perTrackRatingsToggle.checked
+    hideAverageRatings: toggleAverageRatings.checked,
+    hideRatingBars: toggleRatingBars.checked,
+    hidePerTrackRatings: togglePerTrackRatings.checked
   }
 
   // Save preferences to local storage
