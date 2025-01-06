@@ -12,7 +12,6 @@ function hideRating(element) {
       if (element.closest('.trackRating')) {
         element.dataset.trackOriginalColor = getComputedStyle(element).color;
         element.style.color = 'dimgray'; // Hide color
-        console.log("COLOR: ", element.style.color);
       }
 
       element.textContent = '??'; // Hide rating
@@ -36,6 +35,29 @@ function showRating(element) {
   }
 }
 
+function hideRatingBar(element) {
+  // Only hide ratings when viewing releases, but display when viewing a user profile
+  if (!window.location.pathname.startsWith("/user/")) {
+
+    // Store bar data
+    if (!element.dataset.ratingBarOriginalWidth && !element.dataset.ratingBarOriginalColor) {
+      element.dataset.ratingBarOriginalWidth = element.style.width;
+      element.dataset.ratingBarOriginalColor = getComputedStyle(element).backgroundColor;
+      element.style.width = '0%';
+      // bar.style.backgroundColor = 'dimgray';
+    }
+  }
+}
+
+function showRatingBar(element) {
+  if (element.dataset.ratingBarOriginalWidth) {
+    element.style.width = element.dataset.ratingBarOriginalWidth;
+    element.style.backgroundColor = element.dataset.ratingBarOriginalColor;
+    delete element.dataset.ratingBarOriginalWidth;
+    delete element.dataset.ratingBarOriginalColor;
+  }
+}
+
 // Apply preferences for all elements
 function applyPreferences(preferences) {
 
@@ -44,6 +66,12 @@ function applyPreferences(preferences) {
     elements.forEach(element => {
       hide ? hideRating(element) : showRating(element);
     });
+  }
+
+  function toggleRatingBars(bars, hide) {
+    bars.forEach(bars => {
+      hide ? hideRatingBar(bars) : showRatingBar(bars);
+    })
   }
 
   // ----- AVERAGE RATINGS -----
@@ -58,16 +86,18 @@ function applyPreferences(preferences) {
   // LISTS: Average ratings on lists (e.g., "Best of 2024")
   const averageRatingsLists = document.querySelectorAll('.scoreValue');
 
-
   // ----- PER-TRACK RATINGS -----
   const perTrackRatings = document.querySelectorAll('.trackRating span');
 
+  // ----- RATING BARS -----
+  const ratingBars = document.querySelectorAll('.ratingBar div:not(.yourRatingContainer .ratingBar div):not(.albumReviewRow .ratingBar div)');
 
   // Toggle elements
   toggleRatings([criticScore, userScore].filter(Boolean), preferences.hideAverageRatings);
   toggleRatings([...averageRatingsReleases, ...averageRatingsLists], preferences.hideAverageRatings);
   toggleRatings([...perTrackRatings], preferences.hidePerTrackRatings);
 
+  toggleRatingBars([...ratingBars], preferences.hideRatingBars);
 }
 
 // Add listener for messages from the popup
@@ -79,7 +109,11 @@ browser.runtime.onMessage.addListener((message) => {
 
 // Update DOM based on preferences upon loading
 document.addEventListener("DOMContentLoaded", () => {
-  browser.storage.local.get(["hideAverageRatings", "hidePerTrackRatings"], preferences => {
+  browser.storage.local.get([
+    "hideAverageRatings", 
+    "hideRatingBars",
+    "hidePerTrackRatings"
+  ], preferences => {
     applyPreferences(preferences);
   })
 });
