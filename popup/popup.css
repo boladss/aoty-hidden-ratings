@@ -5,3 +5,12 @@ html, body {
 .hidden {
   display: none;
 }
+
+/* Disabled labels styling */
+label.disabled-label {
+  color: black;
+}
+
+input:disabled + label.disabled-label {
+  color:gray;
+}

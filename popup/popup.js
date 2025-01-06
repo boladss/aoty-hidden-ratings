@@ -1,6 +1,6 @@
 // Popup relevant UI elements
 const toggleAverageRatings = document.getElementById("toggle-average-ratings");
-const toggleRatingBars  = document.getElementById("toggle-rating-bars");
+const toggleRatingBars = document.getElementById("toggle-rating-bars");
 const togglePerTrackRatings = document.getElementById("toggle-per-track-ratings");
 const saveButton = document.getElementById("hidden-ratings-save");
 
@@ -34,3 +34,21 @@ saveButton.addEventListener("click", () => {
     })
   });
 })
+
+// Disable the rating bars toggle when average ratings are visible
+function handleToggleRatingBars() {
+  console.log("TOGGLED!");
+  // When average ratings are displayed ...
+  if (!toggleAverageRatings.checked) {
+    toggleRatingBars.disabled = true; // Disable the toggle for rating bars
+    toggleRatingBars.checked = false; // Uncheck it if it's already checked
+  } else {
+    toggleRatingBars.disabled = false; // Enable the toggle again
+  }
+}
+
+// Event listener for the rating bars toggle
+toggleAverageRatings.addEventListener('change', handleToggleRatingBars);
+
+// Run on startup
+handleToggleRatingBars();
