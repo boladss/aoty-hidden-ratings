@@ -10,7 +10,7 @@ browser.storage.local.get([
   "hideRatingBars",
   "hidePerTrackRatings"
 ], (result) => {
-  toggleAverageRatings.checked = result.hideAverageRatings ?? true;
+  toggleAverageRatings.checked = result.hideAverageRatings ?? false;
   toggleRatingBars.checked = result.hideRatingBars ?? false;
   togglePerTrackRatings.checked = result.hidePerTrackRatings ?? false;
 });

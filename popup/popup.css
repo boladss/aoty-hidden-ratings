@@ -1,16 +1,136 @@
 html, body {
-  width: 200px;
+  width: 250px;
+  font-family: "Open Sans";
 }
+
+/* TITLE */
+
+.title {
+  text-align: center;
+}
+
+.title h3 {
+  margin: 1rem 0 1rem 0;
+}
+
+hr {
+  border-top: 1px solid lightgray;
+  opacity: 25%;
+}
+
+/* OPTIONS MENU */
+
+.options {
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 2rem;
+  height: 1rem;
+}
+
+/* Hide the default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: lightgray;
+  border-radius: 0.5rem;
+  transition: .3s;
+  margin-right: 0.25rem;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 0.8rem;
+  width: 0.8rem;
+  left: 0.1rem;
+  bottom: 0.1rem;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+.slider:hover {
+  background-color: darkgray;
+}
+
+input:checked + .slider {
+  background-color: dodgerblue;
+}
+
+input:checked + .slider:hover {
+  background-color: blue;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 2px gray;
+}
+
+input:checked + .slider:before {
+  transform: translateX(0.8rem);
+}
+
+/* Disabled switches */
+.switch input:disabled + .slider {
+  background-color: darkgray;
+  cursor: not-allowed;
+}
+
+.switch input:disabled + .slider:before {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+/* CONFIRMATION BUTTONS */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.footnote, .footnote a {
+  font-size: x-small;
+  color: gray;
+  text-align: center;
+}
+
+button {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  color: black;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: lightgray;
+}
+
+/* MISCELLANEOUS */
 
 .hidden {
   display: none;
-}
-
-/* Disabled labels styling */
-label.disabled-label {
-  color: black;
-}
-
-input:disabled + label.disabled-label {
-  color:gray;
 }
