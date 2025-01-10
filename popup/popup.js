@@ -26,8 +26,11 @@ saveButton.addEventListener("click", () => {
 
   // Save preferences to local storage
   browser.storage.local.set(preferences, () => {
-    console.log("Preferences saved!", preferences);
+    // console.log("Preferences saved!", preferences);
 
+    // Update button text display
+    saveButton.textContent = "Preferences saved!";
+    
     // Send message to content script, to update current viewing page on save
     browser.tabs.query({ active: true, currentWindow: true }).then((tabs) => {
       browser.tabs.sendMessage(tabs[0].id, { type: "updatePreferences", preferences });

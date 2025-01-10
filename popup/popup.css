@@ -85,7 +85,7 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(0.8rem);
+  transform: translateX(0.75rem);
 }
 
 /* Disabled switches */
@@ -122,11 +122,18 @@ button {
   padding: 0.5rem 2rem;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: 0.3s;
+  transition: 2.5s;
+  transition-property: background-color;
 }
 
-button:hover {
-  background-color: lightgray;
+button:hover, button:focus {
+  /* background-color: lightgray; */
+  box-shadow: 0 0 2px gray;
+}
+
+button:active {
+  background-color: dodgerblue;
+  transition: 0.2s;
 }
 
 /* MISCELLANEOUS */
