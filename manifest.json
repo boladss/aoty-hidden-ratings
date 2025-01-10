@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "AOTY Hidden Ratings",
-  "version": "1.2.0",
+  "version": "1.2.1",
 
   "description": "Hides the average ratings on Album of The Year (AOTY) to minimize bias on the viewer.",
   "homepage_url": "https://github.com/boladss/aoty-hidden-ratings",

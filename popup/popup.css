@@ -85,7 +85,7 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(0.8rem);
+  transform: translateX(0.75rem);
 }
 
 /* Disabled switches */
